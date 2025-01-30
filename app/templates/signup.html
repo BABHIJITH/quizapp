@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sign Up</h1>
+      <form method="post" action="{{ url_for('signup') }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.username.label }}
+          {{ form.username(class="form-control") }}
+        </div>
+        <div class="form-group">
+          {{ form.email.label }}
+          {{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group">
+          {{ form.password.label }}
+          {{ form.password(class="form-control") }}
+        </div>
+        <div class="form-group">
+          {{ form.password2.label }}
+          {{ form.password2(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+      <p>Already have an account? <a href="{{ url_for('login') }}">Sign in here</a></p>
+    </div>
+  </body>
+</html>

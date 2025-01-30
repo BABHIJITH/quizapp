@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Admin Panel</h1>
+
+      <!-- Add Category Form -->
+      <h2>Add Category</h2>
+      <form method="post" action="{{ url_for('admin') }}">
+        {{ category_form.hidden_tag() }}
+        <input type="hidden" name="form_type" value="category">
+        <div class="form-group">
+          {{ category_form.name.label }}
+          {{ category_form.name(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Add Category</button>
+      </form>
+      
+      <!-- Add Question Form -->
+      <h2>Add Question</h2>
+      <form method="post" action="{{ url_for('admin') }}">
+        {{ question_form.hidden_tag() }}
+        <input type="hidden" name="form_type" value="question">
+        <div class="form-group">
+          {{ question_form.text.label }}
+          {{ question_form.text(class="form-control") }}
+        </div>
+        <div class="form-group">
+          {{ question_form.choice1.label }}
+          {{ question_form.choice1(class="form-control") }}
+          {{ question_form.choice2.label }}
+          {{ question_form.choice2(class="form-control") }}
+          {{ question_form.choice3.label }}
+          {{ question_form.choice3(class="form-control") }}
+          {{ question_form.choice4.label }}
+          {{ question_form.choice4(class="form-control") }}
+        </div>
+        <div class="form-group">
+          {{ question_form.answer.label }}
+          {{ question_form.answer(class="form-control") }}
+        </div>
+        <div class="form-group">
+          {{ question_form.category.label }}
+          {{ question_form.category(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Add Question</button>
+      </form>
+    </div>
+  </body>
+</html>

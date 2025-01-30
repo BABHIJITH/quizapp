@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ category.name }} Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <div class="container quiz">
+      <h1>{{ category.name }} Quiz</h1>
+
+      {% if score is not none %}
+        <h2>Your Score: {{ score }} / {{ questions|length * 10 }}</h2>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Back to Home</a>
+      {% else %}
+        <form method="post" action="{{ url_for('quiz', category_id=category.id) }}">
+          {% for question in questions %}
+            <div class="form-group">
+              <label for="question_{{ question.id }}">{{ question.text }}</label>
+              <div>
+                {% for choice in question.choices %}
+                  <div>
+                    <input type="radio" name="question_{{ question.id }}" value="{{ choice.text }}" id="choice_{{ choice.id }}">
+                    <label for="choice_{{ choice.id }}">{{ choice.text }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      {% endif %}
+
+      
+    </div>
+  </body>
+</html>

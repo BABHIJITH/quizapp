@@ -59,15 +59,21 @@ def quiz(category_id):
     for question in questions:
         question.choices = Choice.query.filter_by(question_id=question.id).all()
 
-    score = None  # Default value, updated after submission
+    score = None  
 
     if request.method == 'POST':
         score = 0
         for question in questions:
             selected_answer = request.form.get(f"question_{question.id}")
-            if selected_answer and selected_answer == question.answer:
-                score += 10  # 10 points for correct answer
+            print(f"Selected Answer for Question {question.id}: {selected_answer}")
 
+            if selected_answer:
+                print(f"Correct Answer for Question {question.id}: {question.answer_text}")
+
+                if selected_answer == question.answer_text:
+                    score += 10  
+
+        print(f"Final Score: {score}")
         return render_template('quiz.html', category=category, questions=questions, score=score)
 
     return render_template('quiz.html', category=category, questions=questions, score=None)
@@ -78,10 +84,10 @@ def quiz(category_id):
 def admin():
     if not current_user.is_admin:
         return redirect(url_for('dashboard'))
-    
+
     category_form = CategoryForm()
     question_form = QuestionForm()
-    
+
     if request.method == "POST":
         form_type = request.form.get("form_type")
 
@@ -93,15 +99,26 @@ def admin():
             return redirect(url_for('admin'))
 
         elif form_type == "question" and question_form.validate_on_submit():
+            # Find the correct choice text
+            correct_choice_text = None
+            if question_form.answer.data == "choice1":
+                correct_choice_text = question_form.choice1.data
+            elif question_form.answer.data == "choice2":
+                correct_choice_text = question_form.choice2.data
+            elif question_form.answer.data == "choice3":
+                correct_choice_text = question_form.choice3.data
+            elif question_form.answer.data == "choice4":
+                correct_choice_text = question_form.choice4.data
+
+            # Create the question with the correct answer text
             question = Question(
                 text=question_form.text.data,
-                answer=question_form.answer.data,
+                answer_text=correct_choice_text,
                 category_id=question_form.category.data
             )
             db.session.add(question)
             db.session.commit()
 
-            # Add choices for the question
             choices = [
                 Choice(text=question_form.choice1.data, question_id=question.id),
                 Choice(text=question_form.choice2.data, question_id=question.id),

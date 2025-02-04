@@ -1,4 +1,4 @@
-/* style.css */
+
 
 /* General styles */
 body {
@@ -31,7 +31,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Form styles */
+
 form {
     margin-bottom: 20px;
 }
@@ -72,7 +72,7 @@ form {
     color: #555;
 }
 
-/* Button styles */
+
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -100,7 +100,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Specific styles for quiz questions */
+
 .quiz .form-group {
     margin-bottom: 25px;
 }
@@ -113,17 +113,17 @@ a:hover {
     margin-top: 5px;
 }
 
-/* Style for radio buttons */
+
 .quiz .form-group input[type="radio"] {
     margin-right: 10px;
-    width: 18px; /* Set size for radio buttons */
-    height: 18px;
-    vertical-align: middle; /* Align with text */
+    width: 10px; 
+    height: 10px;
+    vertical-align: middle; 
 }
 
-/* Style for radio button labels */
+
 .quiz .form-group label {
     font-weight: bold;
     color: #555;
-    cursor: pointer; /* Makes label clickable */
+    cursor: pointer; 
 }

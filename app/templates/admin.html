@@ -11,7 +11,7 @@
     <div class="container">
       <h1>Admin Panel</h1>
 
-      <!-- Add Category Form -->
+      
       <h2>Add Category</h2>
       <form method="post" action="{{ url_for('admin') }}">
         {{ category_form.hidden_tag() }}
@@ -23,7 +23,7 @@
         <button type="submit" class="btn btn-primary">Add Category</button>
       </form>
       
-      <!-- Add Question Form -->
+      
       <h2>Add Question</h2>
       <form method="post" action="{{ url_for('admin') }}">
         {{ question_form.hidden_tag() }}

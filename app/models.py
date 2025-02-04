@@ -31,19 +31,18 @@ class Category(db.Model):
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(256))
-    answer = db.Column(db.String(64))
+    answer_text = db.Column(db.String(128))  # Change to store the actual answer text
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
-
-    # Relationship to choices
     choices = db.relationship('Choice', backref='question', lazy='dynamic')
 
     def __repr__(self):
         return f"<Question {self.text[:50]}>"
 
+
 class Choice(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(128))  # Choice text
-    question_id = db.Column(db.Integer, db.ForeignKey('question.id'))  # Foreign key to Question
+    text = db.Column(db.String(128))  
+    question_id = db.Column(db.Integer, db.ForeignKey('question.id'))  
 
     def __repr__(self):
         return f"<Choice {self.text[:50]}>"

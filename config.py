@@ -1,7 +1,7 @@
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-print(f"Basedir: {basedir}")  # Ensure this line is for debugging
+print(f"Basedir: {basedir}")  
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
